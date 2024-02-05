@@ -49,6 +49,7 @@ To get started, ensure that you have the following tools:
     ```bash
     cd teams-ai/js/samples/04.ai.a.teamsChefBot/
     ```
+    
 4. Rename the `sample.env` in the `teams-ai/js/samples/04.ai.a.teamsChefBot` folder to `.env`.
 
 5. *Go to Azure OpenAI and deploy `gpt-35-turbo-16k` or the conversational model of your choice and name it as **gpt-35-turbo**. Next, Deploy 'text-embedding-ada-002' as your embedding model while naming it **embedding**.
@@ -56,6 +57,8 @@ To get started, ensure that you have the following tools:
 6. In the newly named '.env' file, fill in your `AZURE_OPENAI_KEY` and `AZURE_OPENAI_ENDPOINT` variables appropriately.
 
 9. Update `config.json` and `index.ts` with your model deployment names
+
+10. 
 
 
 
