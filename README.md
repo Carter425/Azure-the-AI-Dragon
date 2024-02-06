@@ -29,6 +29,9 @@ To get started, ensure that you have the following tools:
 <br/>
 
 ## Setting up the sample
+
+This is a learning exercise for creating your custom copilot. We are adapting the Teams Chefbot sample by incorporating moderator and adaptive card samples. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt this using your data and use-case. 
+
 1. First, select the Teams Toolkit icon on the left in the Visual Studio Code toolbar.
 2. In the Account section, sign in with your Microsoft 365 account if you haven't already.
 3. Clone the repository
