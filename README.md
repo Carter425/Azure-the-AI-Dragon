@@ -30,7 +30,7 @@ To get started, ensure that you have the following tools:
 
 ## Setting up the sample
 
-This is a learning exercise for creating your custom copilot using the Teams AI Library and Azure OpenAI. We are adapting the Teams Chefbot sample by incorporating moderator and adaptive card samples. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt Chefbot using your own data and use-case. To 
+This is a learning exercise for creating your custom copilot using the Teams AI Library and Azure OpenAI. We are adapting the Teams Chefbot sample by incorporating moderator and adaptive card samples. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt Chefbot using your own data and use-case or for upgrading your existing app.
 
 1. Clone the repository
 
@@ -62,7 +62,7 @@ This is a learning exercise for creating your custom copilot using the Teams AI 
 
 ## Adding Azure AI Content Safety Moderator (Optional)
 
-1. Go to src\index.ts file and import the moderator classes by updating the  `import {...} from @microsoft/teams-ai` to match the code below:
+1. Go to `src\index.ts` file and import the moderator classes by updating the  `import {...} from @microsoft/teams-ai` to match the code below:
 
  ```js
 import {
@@ -80,7 +80,7 @@ import {
 } from '@microsoft/teams-ai';
  ```
 
-2. Add `moderator` to the application as shown to match the code below:
+2. Add moderator to the application as shown to match the code below:
 
 ```js
 // Define storage and application
@@ -138,7 +138,7 @@ if (process.env.OPENAI_KEY) {
     });
 ```
 
-4. Replace the AI.FlaggedInputActionName with an updated message specificing why the input was flagged
+4. Replace the `AI.FlaggedInputActionName` with an updated message specificing why the input was flagged
 
 ```js
 app.ai.action(AI.FlaggedInputActionName, async (context, state, data) => {
@@ -162,7 +162,7 @@ app.ai.action(AI.FlaggedInputActionName, async (context, state, data) => {
 });
 ```
 4. [Create your conent saftey resource in Azure](https://aka.ms/acs-create). Then, select the create button and fill out the details. Once created click on your content safety resource to find your content saftey key and endpoint.
-7. Go to the .env file and add in your moderator key and endpoint as new variables below your Azure OpenAI Key and Endpoint. Now, your Azure OpenAI moderator is ready to go.
+7. Go to the `.env` file and add in your moderator key and endpoint as new variables below your Azure OpenAI Key and Endpoint. Now, your Azure OpenAI moderator is ready to go.
 
 ```js
 AZURE_CONTENT_SAFETY_KEY=
@@ -171,7 +171,7 @@ AZURE_CONTENT_SAFETY_ENDPOINT=
 
 ## Adding In your Adaptive Cards (Optional)
 
-1. In the src folder, create the cards folder containing index.ts file and staticCharacterCard.ts files
+1. In the `src` folder, create the `cards` folder containing `index.ts` file and `staticCharacterCard.ts` files
 2. In src\cards\index.ts add in the export
 
 ```js
@@ -181,7 +181,7 @@ AZURE_CONTENT_SAFETY_ENDPOINT=
 
 export * from './staticCharacterCard';
 ```
-3. In the staticCharacterCard.ts file add the code below.
+3. In the `staticCharacterCard.ts` file add the code below.
 
 ```js
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -477,13 +477,13 @@ export function createCharacterCard(): Attachment {
 }
 ```
 
-4. In the src\index.ts file add in
+4. In the `src\index.ts` file add in
 
 ```js
 import { createCharacterCard } from './cards';
 ```
 
-5. In the src\index.ts file add in your code for a trigger message to return your adaptive card when spoken in the chat.
+5. In the `src\index.ts` file add in your code for a trigger message to return your adaptive card when spoken in the chat.
 
 ```js
 // Listen for messages that trigger returning an adaptive card
@@ -495,7 +495,7 @@ app.message(/character card/i, async (context, _state) => {
 
 ## Updating the Prompt
 
-1. Go to skprompt.txt to update the prompt from Chefbot to Azure the AI Dragon
+1. Go to `skprompt.txt` to update the prompt from Chefbot to Azure the AI Dragon
 
 ```
 You are Azure the AI dragon, a quest master, that will guide the player through a cyber futuristic version of the player's chosen city.
@@ -530,8 +530,8 @@ Base your answer off the text below:
 
 ## Creating your Local Vector Database
 
-1. Delete the existing database in the teams-ai folder
-2. Replace the links under index\teams-ai.links and save the change. Alternatively, you can add links to your own local or web based text files here to create a local vector database with your data.
+1. Delete the existing database in the `teams-ai` folder
+2. Replace the links under `index\teams-ai.links` and save the change. Alternatively, you can add links to your own local or web based text files here to create a local vector database with your data. If you recieve a rate limit error, then you need to edit deployment for your embedding model in Azure OpenAI Studio and under advanced options you may increase your rate limit allowing you to embed additional data.
 
 ```js
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/adventuring/adventuring.md
@@ -539,7 +539,6 @@ https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/adventuring
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/character/character.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/character/classes.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/character/races.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/combat/combat.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/gamemaster_rules/gamemaster_rules.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/gamemaster_rules/halfdragon_template.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/rules/abilities1.md
@@ -547,20 +546,20 @@ https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/rules/rules
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/license.md
 ```
 
-4. Rename vectra.keys.azure-example file as vectra.keys
-5. In the newly renamed vectra.keys add in your Azure OpenAI key endpoint, and the name of your embedding model you deployed "embedding"
+4. Rename `vectra.keys.azure-example` file as `vectra.keys`
+5. In the newly renamed `vectra.keys` add in your Azure OpenAI key endpoint, and the name of your embedding model you deployed "embedding"
 6. Bring up the terminal and install vectra
 
 ```bash
 npm install -g vectra
 ```
 
-7. Navigate to the index file in the terminal
+7. Navigate to the `index` file in the terminal
 
 ```bash
 cd index
 ```
-8. Have vectra create a teams-ai folder for our local vector database
+8. Have vectra create a `teams-ai` folder for our local vector database
 
 ```bash
 vectra create teams-ai
@@ -570,13 +569,13 @@ vectra create teams-ai
 ```bash
 vectra add teams-ai -k vectra.keys -l teams-ai.links
 ```
-10. update index.ts and config.json if you chose another name besides teams-ai. Otherwise your local vector database is done
+10. update `index.ts` and `config.json` if you chose another name besides `teams-ai`. Otherwise your local vector database is done.
 
 ## Add in photo, name, and comment out responseformatter
 
-1. To update the photo shown for your custom copilot replace the exisitng color.png file under appPackage folder with the picture of your choice adjusted to 250 x250 pixel size maximum.
-2. Go to appPackage\manifest.json and update the full and short name to `AzureAIDragon` and other information for Azure the AI Dragon.
-3. in src\index.ts, remove addResponseFormatter(app), if desired.
+1. To update the photo shown for your custom copilot replace the exisitng `color.png` file under `appPackage` folder with the picture of your choice adjusted to 250 x250 pixel size maximum.
+2. Go to `appPackage\manifest.json` and update the full and short name to `AzureAIDragon` and other information for Azure the AI Dragon.
+3. in `src\index.ts`, remove `addResponseFormatter(app)`, if desired.
 
 ## Launching your App Locally in Teams
 
