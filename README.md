@@ -82,7 +82,7 @@ import {
 } from '@microsoft/teams-ai';
  ```
 
-2. Add `moderator` to the application
+2. Add `moderator` to the application as shown to match the code below:
 
 ```js
 // Define storage and application
@@ -164,7 +164,7 @@ app.ai.action(AI.FlaggedInputActionName, async (context, state, data) => {
 });
 ```
 4. [Create your conent saftey resource in Azure](https://aka.ms/acs-create). Then, select the create button and fill out the details. Once created click on your content safety resource to find your content saftey key and endpoint.
-7. Go to the .env file and add in your moderator key and endpoint as new variables below your Azure OpenAI Key and Endpoint. Now your Azure OpenAI moderator is ready to go.
+7. Go to the .env file and add in your moderator key and endpoint as new variables below your Azure OpenAI Key and Endpoint. Now, your Azure OpenAI moderator is ready to go.
 
 ```js
 AZURE_CONTENT_SAFETY_KEY=
@@ -183,7 +183,7 @@ AZURE_CONTENT_SAFETY_ENDPOINT=
 
 export * from './staticCharacterCard';
 ```
-3. In the staticCharacterCard.ts file add the code below
+3. In the staticCharacterCard.ts file add the code below.
 
 ```js
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -257,7 +257,7 @@ Base your answer off the text below:
 ## Creating your Local Vector Database
 
 1. Delete the existing database in the teams-ai folder
-2. Replace the links under index\teams-ai.links
+2. Replace the links under index\teams-ai.links and save the change. Alternatively, you can add links to your own local or web based text files here to create a local vector database with your data.
 
 ```js
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/adventuring/adventuring.md
@@ -299,7 +299,6 @@ vectra create teams-ai
 vectra add teams-ai -k vectra.keys -l teams-ai.links
 ```
 10. update index.ts and config.json if you chose another name besides teams-ai. Otherwise your local vector database is done
-
 
 ## Launching your App Locally in Teams
 
