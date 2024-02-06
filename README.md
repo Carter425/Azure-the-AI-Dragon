@@ -161,7 +161,7 @@ app.ai.action(AI.FlaggedInputActionName, async (context, state, data) => {
     return AI.StopCommandName;
 });
 ```
-4. [Create your conent saftey resource in Azure](https://aka.ms/acs-create). Then, select the create button and fill out the details. Once created click on your content safety resource to find your content saftey key and endpoint.
+4. [Create your content safety resource in Azure](https://aka.ms/acs-create). Then, select the create button and fill out the details. Once created click on your content safety resource to find your content safety key and endpoint.
 7. Go to the `.env` file and add in your moderator key and endpoint as new variables below your Azure OpenAI Key and Endpoint. Now, your Azure OpenAI moderator is ready to go.
 
 ```js
@@ -181,7 +181,7 @@ AZURE_CONTENT_SAFETY_ENDPOINT=
 
 export * from './staticCharacterCard';
 ```
-3. In the `staticCharacterCard.ts` file add the code below.
+3. In the `staticCharacterCard.ts` file add the code below. You could update this with your own adaptive card information as well. Creating an adaptive card can be expedited with the [Adaptive Card Designer](https://adaptivecards.io/designer/).
 
 ```js
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -573,7 +573,7 @@ vectra add teams-ai -k vectra.keys -l teams-ai.links
 
 ## Add in photo, name, and comment out responseformatter
 
-1. To update the photo shown for your custom copilot replace the exisitng `color.png` file under `appPackage` folder with the picture of your choice adjusted to 250 x250 pixel size maximum.
+1. To update the photo shown for your custom copilot replace the existing `color.png` file under `appPackage` folder with the picture of your choice adjusted to 250 x250 pixel size maximum.
 2. Go to `appPackage\manifest.json` and update the full and short name to `AzureAIDragon` and other information for Azure the AI Dragon.
 3. in `src\index.ts`, remove `addResponseFormatter(app)`, if desired.
 
