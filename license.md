@@ -1,6 +1,4 @@
-# Legal Information
-
-## Site content
+# Attribution statement
 
 The content of this site is governed by the following license:
 
