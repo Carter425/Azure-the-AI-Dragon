@@ -1,4 +1,4 @@
-# Azure the AI Dragon: Custom copilot connected to your data with Teams AI Library and Azure OpenAI
+# Azure the AI Dragon Guide: Custom copilot connected to your data with Teams AI Library and Azure OpenAI
 
 Azure the AI Dragon showcases how to build a custom copilot that takes your Teams users to another world weaving in your chosen data-sources into a cohesive story with instant analysis. Follow along to learn how to create your custom copilot powered by Azure OpenAI models and integrated into Teams with the Teams AI Library. We'll walkthrough building a local vector database connected to your model, implementing responsible AI content moderation, integrating your adaptive cards into your copilot, and more. Code snippets and a video are included to make this easy for you. Let's build it!
 
