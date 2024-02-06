@@ -300,6 +300,11 @@ vectra add teams-ai -k vectra.keys -l teams-ai.links
 ```
 10. update index.ts and config.json if you chose another name besides teams-ai. Otherwise your local vector database is done
 
+## Add in photo and name
+
+1. To update the photo shown for your custom copilot replace the exisitng color.png file under appPackage folder with the picture of your choice adjusted to 250 x250 pixel size maximum.
+2. Go to appPackage\manifest.json and update the full and short name to `AzureAIDragon` and other information for Azure the AI Dragon.
+
 ## Launching your App Locally in Teams
 
 1. Press F5 to start debugging which launches your app in Teams using a web browser. Select `Debug (Edge)` or `Debug (Chrome)`.
