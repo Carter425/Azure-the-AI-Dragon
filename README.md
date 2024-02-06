@@ -52,17 +52,120 @@ To get started, ensure that you have the following tools:
     
 4. Rename the `sample.env` in the `teams-ai/js/samples/04.ai.a.teamsChefBot` folder to `.env`.
 
-5. *Go to Azure OpenAI and deploy `gpt-35-turbo-16k` or the conversational model of your choice and name it as **gpt-35-turbo**. Next, Deploy `text-embedding-ada-002` as your embedding model while naming it **embedding**.
+5. Go to Azure OpenAI and deploy `gpt-35-turbo-16k` or the chat based model of your choice and name it as **gpt-35-turbo**. Next, Deploy `text-embedding-ada-002` as your embedding model while naming it **embedding**.
 
-6. In the newly named '.env' file, fill in your `AZURE_OPENAI_KEY` and `AZURE_OPENAI_ENDPOINT` variables appropriately.
+6. In the renamed `.env` file, fill in your `AZURE_OPENAI_KEY` and `AZURE_OPENAI_ENDPOINT` variables appropriately.
 
-9. Update `config.json` and `index.ts` with your model deployment names
+9. Update `config.json` and `index.ts` with your chat model deployment name **gpt-35-turbo**. 
 
-10. 
+## Adding Azure AI Content Safety Moderator (Optional)
 
-## Adding Azure AI Content Moderator
+1. Import the moderator classes by replacing `import from @microsoft/teams-ai` with the code below
 
-## Adding In your Adaptive Cards
+ ```js
+import {
+    AI,
+    Application,
+    ActionPlanner,
+    OpenAIModel,
+    PromptManager,
+    TurnState,
+    TeamsAdapter,
+    AzureContentSafetyModerator,
+    ModerationSeverity,
+    OpenAIModerator,
+    Moderator
+} from '@microsoft/teams-ai';
+ ```
+2. Add moderator to the application
+
+```js
+// Define storage and application
+const storage = new MemoryStorage();
+const app = new Application<ApplicationTurnState>({
+    storage,
+    ai: {
+        planner,
+        moderator
+    }
+});
+ ```
+3. Create the moderator
+
+```js
+// Create appropriate moderator
+let moderator: Moderator;
+if (process.env.OPENAI_KEY) {
+    moderator = new OpenAIModerator({
+        apiKey: process.env.OPENAI_KEY!,
+        moderate: 'both'
+    });
+} else 
+    if (!process.env.AZURE_CONTENT_SAFETY_KEY || !process.env.AZURE_CONTENT_SAFETY_ENDPOINT) {
+        throw new Error(
+            'Missing environment variables - please check that both AZURE_CONTENT_SAFETY_KEY and AZURE_CONTENT_SAFETY_ENDPOINT are set.'
+        );
+    }
+    moderator = new AzureContentSafetyModerator({
+        apiKey: process.env.AZURE_CONTENT_SAFETY_KEY!,
+        endpoint: process.env.AZURE_CONTENT_SAFETY_ENDPOINT!,
+        apiVersion: '2023-04-30-preview',
+        moderate: 'both',
+        categories: [
+            {
+                category: 'Hate',
+                severity: ModerationSeverity.High
+            },
+            {
+                category: 'SelfHarm',
+                severity: ModerationSeverity.High
+            },
+            {
+                category: 'Sexual',
+                severity: ModerationSeverity.High
+            },
+            {
+                category: 'Violence',
+                severity: ModerationSeverity.High
+            }
+        ]
+        // breakByBlocklists: true,
+        // blocklistNames: [] // Text blocklist Name. Only support following characters: 0-9 A-Z a-z - . _ ~. You could attach multiple lists name here.
+    });
+```
+
+4. Replace the AI.FlaggedInputActionName with an updated message specificing why the input was flagged
+
+```js
+app.ai.action(AI.FlaggedInputActionName, async (context, state, data) => {
+    let message = '';
+    if (data?.categories?.hate) {
+        message += `<strong>Hate speech</strong> detected.`;
+    }
+    if (data?.categories?.sexual) {
+        message += `<strong>Sexual content</strong> detected`;
+    }
+    if (data?.categories?.selfHarm) {
+        message += `<strong>Self harm</strong> detected.`;
+    }
+    if (data?.categories?.violence) {
+        message += `<strong>Violence</strong> detected.`;
+    }
+    await context.sendActivity(
+        `I'm sorry your message was flagged due to triggering Azure OpenAI’s content management policy. Reason: ${message}`
+    );
+    return AI.StopCommandName;
+});
+```
+4. Create your content saftey key and endpoint 
+5. Go to the .env file and add in your moderator key and endpoint as new variables below your Azure OpenAI Key and Endpoint
+
+```js
+AZURE_CONTENT_SAFETY_KEY=
+AZURE_CONTENT_SAFETY_ENDPOINT=
+```
+
+## Adding In your Adaptive Cards (Optional)
 
 ## Updating the Prompt
 
