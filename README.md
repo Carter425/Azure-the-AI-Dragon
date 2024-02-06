@@ -30,7 +30,7 @@ To get started, ensure that you have the following tools:
 
 ## Setting up the sample
 
-This is a learning exercise for creating your custom copilot using the Teams AI Library and Azure OpenAI. We are adapting the Teams Chefbot sample by incorporating moderator and adaptive card samples. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt Chefbot using your own data and use-case or for upgrading your existing app.
+This is a learning exercise for creating your custom copilot using the Teams AI Library and Azure OpenAI. We are adapting the Teams Chefbot sample from the Teams AI Library by incorporating infromation from the other moderator and adaptive card samples to learn about multiple concepts. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt Chefbot using your own data and use-case or for upgrading your existing app.
 
 1. Clone the repository
 
