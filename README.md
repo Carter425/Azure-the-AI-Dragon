@@ -32,15 +32,13 @@ To get started, ensure that you have the following tools:
 
 This is a learning exercise for creating your custom copilot using the Teams AI Library and Azure OpenAI. We are adapting the Teams Chefbot sample by incorporating moderator and adaptive card samples. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt Chefbot using your own data and use-case. To 
 
-1. First, select the Teams Toolkit icon on the left in the Visual Studio Code toolbar.
-2. In the Account section, sign in with your Microsoft 365 account if you haven't already.
-3. Clone the repository
+1. Clone the repository
 
     ```bash
     git clone https://github.com/Microsoft/teams-ai.git
     ```
 
-4. In the root JavaScript folder, install and build all dependencies
+2. In the root JavaScript folder, install and build all dependencies
 
     ```bash
     cd teams-ai/js
@@ -48,19 +46,19 @@ This is a learning exercise for creating your custom copilot using the Teams AI 
     yarn build
     ```
 
-5. In a terminal, navigate to the sample root.
+3. In a terminal, navigate to the sample root.
 
     ```bash
     cd teams-ai/js/samples/04.ai.a.teamsChefBot/
     ```
     
-6. Rename the `sample.env` in the `teams-ai/js/samples/04.ai.a.teamsChefBot` folder to `.env`.
+4. Rename the `sample.env` in the `teams-ai/js/samples/04.ai.a.teamsChefBot` folder to `.env`.
 
-5. Go to Azure OpenAI Service in Azure and deploy `gpt-35-turbo-16k` or the chat based model of your choice and name it as **gpt-35-turbo**. Next, Deploy `text-embedding-ada-002` as your embedding model while naming it **embedding**.
+5. Go to Azure OpenAI Service in Azure and deploy `gpt-35-turbo-16k` or the chat based model of your choice and name it as **gpt-35-turbo**. Next, Deploy `text-embedding-ada-002` as your embedding model while naming it **embedding** and under advanced options when deploying you may maximize the Tokens per Minute Rate Limit to enable more data to be embedded in your local vector database.
 
 6. In the renamed `.env` file, fill in your `AZURE_OPENAI_KEY` and `AZURE_OPENAI_ENDPOINT` variables appropriately. (Your Azure OpenAI key and endpoint may be found in Azure under Keys and Endpoint section under your Azure OpenAI resource.
 
-7. Update `config.json` and `index.ts` with your chat model deployment name **gpt-35-turbo**. 
+7. Update `config.json` and `index.ts` with your chat model deployment name **gpt-35-turbo**. At this point you could press F5 to load Chefbot into Teams or continue to make Azure the AI Dragon.
 
 ## Adding Azure AI Content Safety Moderator (Optional)
 
@@ -512,9 +510,9 @@ Let the player respond, if the user has confirmed they want to start the game ev
 
     - detailed and peaceful narrative of the adventure focused on a mystery and exploration fit for all ages to play similar to a PG rated movie.
    
-    - include details about chosen city in the narrative such as real famous landmarks, it's unique culture, and it's weather all affecting the adventure. Inclue random encounters with creatures, equipment, and spells from the information in the 5th Edition (5e) SRD (System Reference Document). 
+    - include details about chosen city in the narrative such as real famous landmarks, it's unique culture, and it's weather all affecting the adventure. Include random encounters with creatures, equipment, and spells from the information in the 5th Edition (5e) SRD (System Reference Document). 
     
-    - be influenced by the user's chosen character with its character traits for the adventure from the way they react to situations and how other character's react to them.
+    - be influenced by the user's chosen character with its character traits for the adventure from the way they react to situations and how other characters react to them.
 
     - always end with a separate section for "Dragon copilot suggested actions" with three potential actions for the user to choose as shown in the format per the example below:
 
@@ -546,8 +544,6 @@ https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/gamemaster_
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/gamemaster_rules/halfdragon_template.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/rules/abilities1.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/rules/rules.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/spellcasting/casting_a_spell.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/spellcasting/what_is_a_spell.md
 https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/license.md
 ```
 
@@ -576,10 +572,11 @@ vectra add teams-ai -k vectra.keys -l teams-ai.links
 ```
 10. update index.ts and config.json if you chose another name besides teams-ai. Otherwise your local vector database is done
 
-## Add in photo and name
+## Add in photo, name, and comment out responseformatter
 
 1. To update the photo shown for your custom copilot replace the exisitng color.png file under appPackage folder with the picture of your choice adjusted to 250 x250 pixel size maximum.
 2. Go to appPackage\manifest.json and update the full and short name to `AzureAIDragon` and other information for Azure the AI Dragon.
+3. in src\index.ts, remove addResponseFormatter(app), if desired.
 
 ## Launching your App Locally in Teams
 
