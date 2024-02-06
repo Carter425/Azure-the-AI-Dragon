@@ -224,7 +224,7 @@ export function createCharacterCard(): Attachment {
         },
         {
             type: "Image",
-            url: "https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/4ce6ed419d64b18d66a7e6e2ac3a4c5118379031/Dragon.png",
+            url: "https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/Dragon.png",
             horizontalAlignment: "Center"
         },
         {
