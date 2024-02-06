@@ -30,7 +30,7 @@ To get started, ensure that you have the following tools:
 
 ## Setting up the sample
 
-This is a learning exercise for creating your custom copilot. We are adapting the Teams Chefbot sample by incorporating moderator and adaptive card samples. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt this using your data and use-case. 
+This is a learning exercise for creating your custom copilot using the Teams AI Library and Azure OpenAI. We are adapting the Teams Chefbot sample by incorporating moderator and adaptive card samples. Additionally, we are updating the prompt and creating a local vector database. The README instructions are based off of starting with the chefbot sample to upgrade it to Azure the AI Dragon. The same concepts shown can be used to adapt Chefbot using your own data and use-case. To 
 
 1. First, select the Teams Toolkit icon on the left in the Visual Studio Code toolbar.
 2. In the Account section, sign in with your Microsoft 365 account if you haven't already.
@@ -56,7 +56,7 @@ This is a learning exercise for creating your custom copilot. We are adapting th
     
 6. Rename the `sample.env` in the `teams-ai/js/samples/04.ai.a.teamsChefBot` folder to `.env`.
 
-5. Go to Azure OpenAI and deploy `gpt-35-turbo-16k` or the chat based model of your choice and name it as **gpt-35-turbo**. Next, Deploy `text-embedding-ada-002` as your embedding model while naming it **embedding**.
+5. Go to Azure OpenAI Service in Azure and deploy `gpt-35-turbo-16k` or the chat based model of your choice and name it as **gpt-35-turbo**. Next, Deploy `text-embedding-ada-002` as your embedding model while naming it **embedding**.
 
 6. In the renamed `.env` file, fill in your `AZURE_OPENAI_KEY` and `AZURE_OPENAI_ENDPOINT` variables appropriately. (Your Azure OpenAI key and endpoint may be found in Azure under Keys and Endpoint section under your Azure OpenAI resource.
 
@@ -196,8 +196,284 @@ import { Attachment, CardFactory } from 'botbuilder';
  * @returns {Attachment} Static search card.
  */
 export function createCharacterCard(): Attachment {
-    return CardFactory.adaptiveCard({
-//Paste your adaptive card code here
+    return CardFactory.adaptiveCard({        
+    $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
+    type: "AdaptiveCard",
+    version: "1.5",
+    body: [
+        {
+            type: "Container",
+            items: [
+                {
+                    type: "TextBlock",
+                    text: "AI Dragon Quest",
+                    size: "Large",
+                    weight: "Bolder",
+                    color: "Dark",
+                    horizontalAlignment: "Center"
+                }
+            ],
+            backgroundImage: {
+                url: "https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            },
+            bleed: true
+        },
+        {
+            type: "TextBlock",
+            text: "Welcome Adventurer!",
+            wrap: true,
+            style: "heading"
+        },
+        {
+            type: "Image",
+            url: "https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/4ce6ed419d64b18d66a7e6e2ac3a4c5118379031/Dragon.png",
+            horizontalAlignment: "Center"
+        },
+        {
+            type: "TextBlock",
+            text: "Click on a character to learn more.",
+            wrap: true,
+            style: "heading"
+        },
+        {
+            type: "ActionSet",
+            actions: [
+                {
+                    type: "Action.ShowCard",
+                    title: "Elf",
+                    card: {
+                        type: "AdaptiveCard",
+                        body: [
+                            {
+                                type: "TextBlock",
+                                text: "Your Elf character, with heightened dexterity and intelligence, is adept in both elven tools and wizardry, mastering a cantrip from the wizard's spell list. His keen senses, darkvision, and deep cultural knowledge make him an agile guardian of elven traditions and a bridge between worlds.",
+                                wrap: true
+                            },
+                            {
+                                type: "FactSet",
+                                facts: [
+                                    {
+                                        title: "Speed:",
+                                        value: "Fast"
+                                    },
+                                    {
+                                        title: "Alignment:",
+                                        value: "Chaotic Good"
+                                    },
+                                    {
+                                        title: "Special Abilities:",
+                                        value: "Darkvision, Keen Senses, and Trance"
+                                    }
+                                ]
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "**Ask dragon copilot**",
+                                wrap: true,
+                                style: "default",
+                                fontType: "Default",
+                                size: "Medium",
+                                weight: "Bolder"
+                            }
+                        ],
+        actions: [
+        {
+            type: "Action.Submit",
+            title: "Analyze an Elf for this cyber mission",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "Analyze an Elf for this cyber mission",
+                    value: "Analyze an Elf for this cyber mission"
+                }
+            }
+        },
+        {
+            type: "Action.Submit",
+            title: "Compare an Elf vs an Orc",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "Compare an Elf vs an Orc",
+                    value: "Compare an Elf vs an Orc"
+                }
+            }
+        },
+        {
+            type: "Action.Submit",
+            title: "What are Elf weaknesses",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "What are Elf weaknesses",
+                    value: "What are Elf weaknesses"
+                }
+            }
+        }
+                ]
+                    }
+                },
+                {
+                    type: "Action.ShowCard",
+                    title: "Dragonborn",
+                    card: {
+                        type: "AdaptiveCard",
+                        body: [
+                            {
+                                type: "TextBlock",
+                                text: "Your Dragonborn, brimming with draconic power, brandishes a breath weapon and resists a damage from certain elements tied to their lineage. They stand as a bold symbol of dragon heritage, merging might with ancient wisdom.",
+                                wrap: true
+                            },
+                            {
+                                type: "FactSet",
+                                facts: [
+                                    {
+                                        title: "Speed:",
+                                        value: "Fast"
+                                    },
+                                    {
+                                        title: "Alignment:",
+                                        value: "Tends toward extremes. Can be good or become a terrible villan"
+                                    },
+                                    {
+                                        title: "Special Abilities:",
+                                        value: "Breath Weapon, Damage Resistance, and Draconic Ancestry"
+                                    }
+                                ]
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "**Ask dragon copilot**",
+                                wrap: true,
+                                style: "default",
+                                fontType: "Default",
+                                size: "Medium",
+                                weight: "Bolder"
+                            }
+                        ],
+        actions: [
+        {
+            type: "Action.Submit",
+            title: "Analyze a Dragonborn for this cyber mission",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "Analyze a Dragonborn for this cyber mission",
+                    value: "Analyze a Dragonborn for this cyber mission"
+                }
+            }
+        },
+        {
+            type: "Action.Submit",
+            title: "Compare a Dragonborn vs a Human",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "Compare a Dragonborn vs a Human",
+                    value: "Compare a Dragonborn vs a Human"
+                }
+            }
+        },
+        {
+            type: "Action.Submit",
+            title: "What are Dragonborn weaknesses",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "What are Dragonborn weaknesses",
+                    value: "What are Dragonborn weaknesses"
+                }
+            }
+        }
+                ]
+                    }
+                },
+                {
+                    type: "Action.ShowCard",
+                    title: "Dwarf",
+                    card: {
+                        type: "AdaptiveCard",
+                        body: [
+                            {
+                                type: "TextBlock",
+                                text: "Your Dwarf character, forged in the depths of mountain halls, combines stalwart endurance with a mastery of stone and steel. With their resilience and expertise in craftsmanship, they are a bulwark in battle and a bastion of ancient tradition.",
+                                wrap: true
+                            },
+                            {
+                                type: "FactSet",
+                                facts: [
+                                    {
+                                        title: "Speed:",
+                                        value: "Slow"
+                                    },
+                                    {
+                                        title: "Alignment:",
+                                        value: "Lawful good"
+                                    },
+                                    {
+                                        title: "Special Abilities:",
+                                        value: "Darkvision, Dwarven	Resilience, and Tool Proficiency"
+                                    }
+                                ]
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "**Ask dragon copilot**",
+                                wrap: true,
+                                style: "default",
+                                fontType: "Default",
+                                size: "Medium",
+                                weight: "Bolder"
+                            }
+                        ],
+        actions: [
+        {
+            type: "Action.Submit",
+            title: "Analyze a Dwarf for this cyber mission",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "Analyze a Dwarf for this cyber mission",
+                    value: "Analyze a Dwarf for this cyber mission"
+                }
+            }
+        },
+        {
+            type: "Action.Submit",
+            title: "Compare a Dwarf vs a Halfling",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "Compare a Dwarf vs a Halfling",
+                    value: "Compare a Dwarf vs a Halfling"
+                }
+            }
+        },
+        {
+            type: "Action.Submit",
+            title: "What are Dragonborn weaknesses",
+            data: {
+                msteams: {
+                    type: "imBack",
+                    text: "What are Dwarf weaknesses",
+                    value: "What are Dwarf weaknesses"
+                }
+            }
+        }
+                ]
+                    }
+                },
+                {
+                    type: "Action.ShowCard",
+                    title: "Gnome",
+                    card: {
+                        type: "AdaptiveCard"
+                    },
+                    mode: "secondary"
+                }
+            ]
+        }
+    ]
 }
 );
 }
