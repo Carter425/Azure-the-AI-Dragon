@@ -534,16 +534,16 @@ Base your answer off the text below:
 2. Replace the links under `index\teams-ai.links` and save the change. Alternatively, you can add links to your own local or web based text files here to create a local vector database with your data. If you recieve a rate limit error, then you need to edit deployment for your embedding model in Azure OpenAI Studio and under advanced options you may increase your rate limit allowing you to embed additional data.
 
 ```js
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/adventuring/adventuring.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/adventuring/equipment.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/character/character.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/character/classes.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/character/races.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/gamemaster_rules/gamemaster_rules.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/gamemaster_rules/halfdragon_template.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/rules/abilities1.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/rules/rules.md
-https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/license.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/adventuring/adventuring.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/adventuring/equipment.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/character/character.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/character/classes.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/character/races.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/gamemaster_rules/gamemaster_rules.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/gamemaster_rules/halfdragon_template.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/rules/abilities1.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/rules/rules.md
+https://raw.githubusercontent.com/Carter425/Azure-the-AI-Dragon/main/documents.data/license.md
 ```
 
 4. Rename `vectra.keys.azure-example` file as `vectra.keys`
