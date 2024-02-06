@@ -1,5 +1,0 @@
-{
-    "azureApiKey": "yourkey",
-    "azureEndpoint": "yourendpoint",
-    "azureDeployment": "embedding"
-}
